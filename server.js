@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/api/classify-number', async (req, res) => {
   try {
-    const numberParam = req.query.number ?? 0;
+    const numberParam = req.query.number;
 
     const number =  parseInt(numberParam, 10);
     const absNum = Math.abs(number);
