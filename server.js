@@ -21,7 +21,7 @@ app.get('/api/classify-number', async (req, res) => {
       });
     }
 
-    const [properties, digitSum] = getNumberProperties(absNum);
+    const [properties, digitSum] = getNumberProperties(number);
     const funFact = await getMathFact(absNum);
     
     res.json({
