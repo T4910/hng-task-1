@@ -37,6 +37,8 @@ app.get('/api/classify-number', async (req, res) => {
   }
 });
 
+app.get('/', (_, res) => res.redirect('/api/classify-number?number=0'));
+
 async function getMathFact(number) {
   try {
     const response = await axios.get(`http://numbersapi.com/${number}/math`);
