@@ -10,17 +10,19 @@ const PORT = process.env.PORT || 3000;
 app.get('/api/classify-number', async (req, res) => {
   try {
     const numberParam = req.query.number;
-    const number = parseInt(numberParam, 10);
+    const number =  parseInt(numberParam, 10);
+    const absNum = Math.abs(number);
     
+    // console.log(number)
     if (isNaN(number)) {
       return res.status(400).json({
-        number: typeof numberParam,
+        number: numberParam,
         error: true
       });
     }
 
-    const [properties, digitSum] = getNumberProperties(number);
-    const funFact = await getMathFact(number);
+    const [properties, digitSum] = getNumberProperties(absNum);
+    const funFact = await getMathFact(absNum);
     
     res.json({
       number,
