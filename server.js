@@ -9,11 +9,11 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/api/classify-number', async (req, res) => {
   try {
-    const numberParam = req.query.number;
+    const numberParam = req.query.number ?? 0;
+
     const number =  parseInt(numberParam, 10);
     const absNum = Math.abs(number);
     
-    // console.log(number)
     if (isNaN(number)) {
       return res.status(400).json({
         number: numberParam,
