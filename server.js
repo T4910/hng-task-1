@@ -13,16 +13,17 @@ app.get('/api/classify-number', async (req, res) => {
   try {
     const numberParam = req.query.number;
 
-    const number =  parseInt(numberParam, 10);
-    const absNum = Math.abs(number);
     
-    if (isNaN(number) || !isInteger(number)) {
+    if (isNaN(numberParam) || !Number.isInteger(numberParam)) {
       return res.status(400).json({
         number: numberParam,
         error: true
       });
     }
 
+    const number =  parseInt(numberParam, 10);
+    const absNum = Math.abs(number);
+    
     const [[ properties, digit_sum ], is_prime, is_perfect, fun_fact] = await Promise.all([
       getNumberProperties(number),
       classifyNumber.isPrime(number),
