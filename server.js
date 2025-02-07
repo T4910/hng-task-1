@@ -13,8 +13,9 @@ app.get('/api/classify-number', async (req, res) => {
   try {
     const numberParam = req.query.number;
 
+    console.log(classifyNumber.isInteger(numberParam), numberParam)
     
-    if (isNaN(numberParam) || !Number.isInteger(numberParam)) {
+    if (isNaN(numberParam) || !classifyNumber.isInteger(numberParam)) {
       return res.status(400).json({
         number: numberParam,
         error: true
@@ -28,7 +29,7 @@ app.get('/api/classify-number', async (req, res) => {
       getNumberProperties(number),
       classifyNumber.isPrime(number),
       classifyNumber.isPerfect(number),
-      getMathFact(absNum),
+      // getMathFact(absNum),
     ]) 
 
     console.log({
@@ -37,7 +38,7 @@ app.get('/api/classify-number', async (req, res) => {
       is_perfect,
       properties,
       digit_sum,
-      fun_fact
+      // fun_fact
       // a
     })
 

@@ -1,4 +1,12 @@
+const { isInteger, toNumber } = require("lodash");
+
 const classifyNumber = {
+  
+  isInteger: (num) => {
+    const _ = toNumber(num)
+    return isInteger(_)
+  },
+
   isPrime: (num) => {
     return new Promise((resolve, reject) => {
       if (num <= 1) resolve(false);
