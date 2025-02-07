@@ -21,16 +21,30 @@ app.get('/api/classify-number', async (req, res) => {
       });
     }
 
-    const [properties, digitSum] = getNumberProperties(number);
-    const funFact = await getMathFact(absNum);
+    const [[ properties, digit_sum ], is_prime, is_perfect, fun_fact] = await Promise.all([
+      getNumberProperties(number),
+      classifyNumber.isPrime(number),
+      classifyNumber.isPerfect(number),
+      getMathFact(absNum),
+    ]) 
+
+    console.log({
+      number,
+      is_prime,
+      is_perfect,
+      properties,
+      digit_sum,
+      fun_fact
+    })
+
     
     res.json({
       number,
-      is_prime: classifyNumber.isPrime(number),
-      is_perfect: classifyNumber.isPerfect(number),
+      is_prime,
+      is_perfect,
       properties,
-      digit_sum: digitSum,
-      fun_fact: funFact
+      digit_sum,
+      fun_fact
     });
 
   } catch (error) {
