@@ -1,10 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const compression = require('compression');
 const { classifyNumber, getNumberProperties } = require('./utils/numberUtils');
 
 const app = express();
 app.use(cors());
+app.use(compression());
 const PORT = process.env.PORT || 3000;
 
 app.get('/api/classify-number', async (req, res) => {
@@ -21,7 +23,7 @@ app.get('/api/classify-number', async (req, res) => {
       });
     }
 
-    const [[ properties, digit_sum ], is_prime, is_perfect, fun_fact] = await Promise.all([
+    const a = await Promise.all([
       getNumberProperties(number),
       classifyNumber.isPrime(number),
       classifyNumber.isPerfect(number),
@@ -29,12 +31,13 @@ app.get('/api/classify-number', async (req, res) => {
     ]) 
 
     console.log({
-      number,
-      is_prime,
-      is_perfect,
-      properties,
-      digit_sum,
-      fun_fact
+      // number,
+      // is_prime,
+      // is_perfect,
+      // properties,
+      // digit_sum,
+      // fun_fact
+      a
     })
 
     
