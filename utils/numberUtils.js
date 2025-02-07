@@ -56,7 +56,7 @@ const getNumberProperties = (num) => {
     const power = digits.length;
     const armstrongSum = digits.reduce((acc, digit) => 
       acc + Math.pow(parseInt(digit), power), 0);
-    if (armstrongSum === absNum) properties.push('armstrong');
+    if (armstrongSum === absNum && !(num < 0)) properties.push('armstrong');
     
     // Check properties
     if (num % 2 === 0) properties.push('even');
